@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Basel Ghanem - Senior Sales Analyst & Power BI Specialist Portfolio">
+    <title>Basel Ghanem | Data Strategist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ROOT VARIABLES & RESET --- */
+        :root {
+            --primary: #0f172a; /* Deep Navy - Authority */
+            --accent: #0ea5e9; /* Electric Blue - Tech/Data */
+            --accent-gradient: linear-googleapis(135deg, #0ea5e9 0%, #22d3ee 100%);
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding { padding: 100px 0; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+        }
+
+        .nav-links { display: flex; gap: 30px; }
+        
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, rgba(255, 255, 255, 0) 90%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.3);
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px -10px rgba(15, 23, 42, 0.4);
+            background: var(--accent);
+        }
+
+        /* --- STATS BAR --- */
+        .stats-bar {
+            background: var(--white);
+            padding: 40px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* --- SECTION HEADERS --- */
+        .section-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- EXPERIENCE (Timeline) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: #e2e8f0;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 50px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            position: relative;
+            border: 1px solid #f1f5f9;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content { margin-right: auto; text-align: right; }
+        .timeline-item:nth-child(even) .timeline-content { margin-left: auto; text-align: left; }
+        
+        .timeline-item:nth-child(odd) .timeline-date { right: -120%; text-align: left; top: 35px;}
+        .timeline-item:nth-child(even) .timeline-date { left: -120%; text-align: right; top: 35px;}
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 35px;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--white);
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .role-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
+        .company-name { font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px; display: block; }
+        .role-desc { font-size: 0.9rem; color: var(--text-dark); }
+
+        /* --- SKILLS & PROJECTS --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #f1f5f9;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin: 5px 5px 5px 0;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* --- CONTACT & FOOTER --- */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 80px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content h2 { margin-bottom: 30px; font-size: 2.5rem; }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            
+            .timeline::before { left: 20px; }
+            .timeline-item { flex-direction: column; padding-left: 50px; text-align: left; }
+            .timeline-content { width: 100%; text-align: left !important; }
+            .timeline-item:nth-child(odd) .timeline-content { margin: 0; }
+            .timeline-item:nth-child(even) .timeline-content { margin: 0; }
+            
+            .timeline-dot { left: 20px; }
+            .timeline-date { 
+                position: relative; 
+                top: 0; left: 0 !important; right: 0 !important; 
+                margin-bottom: 10px; display: block; text-align: left !important;
+            }
+        }
+
+        /* --- ANIMATION KEYFRAMES --- */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">BASEL.<span style="color:var(--accent)">GHANEM</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="container hero-content">
+            <span class="hero-badge">Senior Sales Analyst & Power BI Expert</span>
+            <h1>Turning Complex Data Into <br><span class="gradient-text">Strategic Success</span></h1>
+            <p class="hero-subtitle">Based in Amman, Jordan. Driving profitability through actionable business intelligence and advanced forecasting.</p>
+            <a href="#contact" class="cta-btn">Connect With Me</a>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>8+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>1,000+</h3>
+                <p>Professionals Trained</p>
+            </div>
+            <div class="stat-item">
+                <h3>250+</h3>
+                <p>Data Sessions</p>
+            </div>
+            <div class="stat-item">
+                <h3>40%</h3>
+                <p>Efficiency Gain (Automation)</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional Summary</h2>
+                <p>Strategic. Results-Oriented. Data-Driven.</p>
+            </div>
+            <div class="card" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="color: var(--text-dark); font-size: 1.05rem;">
+                    I am a Sales Analyst with over 8 years of experience in transforming complex datasets into actionable business intelligence. My expertise lies in aligning sales performance with corporate strategy, enhancing operational efficiency, and identifying market trends to boost profitability. I bridge the gap between Finance, Marketing, and Sales through data governance and cross-functional collaboration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding" style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Career Trajectory</h2>
+                <p>A history of continuous improvement and impact.</p>
+            </div>
+
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Feb 2022 – Present</div>
+                    <div class="timeline-content">
+                        <h3 class="role-title">Sales Analyst</h3>
+                        <span class="company-name">Dar Al Dawa Development & Investment Co. | Amman</span>
+                        <p class="role-desc">Leading end-to-end performance analytics and identifying growth opportunities. Developing real-time Power BI dashboards for senior management and driving process improvements in pricing and commercial strategies.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">May 2020 – Jan 2022</div>
+                    <div class="timeline-content">
+                        <h3 class="role-title">Warehouse Supervisor</h3>
+                        <span class="company-name">Masafat Distribution | Amman</span>
+                        <p class="role-desc">Designed custom tracking tools to improve operational visibility. Conducted root-cause analysis to enhance fulfillment accuracy and service reliability.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Apr 2018 – Mar 2020</div>
+                    <div class="timeline-content">
+                        <h3 class="role-title">Sales Analyst</h3>
+                        <span class="company-name">National Paints Factories Co. LTD. | Amman</span>
+                        <p class="role-desc">Aggregated datasets from 20+ sources. Built automated forecasting models reducing manual reporting time by 40%. Analyzed pricing strategies for financial alignment.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Dec 2014 – May 2018</div>
+                    <div class="timeline-content">
+                        <h3 class="role-title">SAP Controller MM</h3>
+                        <span class="company-name">AlMarai (Teeba Investments) | Amman</span>
+                        <p class="role-desc">Managed SAP transaction accuracy and data integrity. Facilitated month-end activities and resolved data discrepancies for accurate revenue reporting.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Expertise & Impact</h2>
+                <p>Technical mastery meets business strategy.</p>
+            </div>
+
+            <div class="grid-layout">
+                <div class="card">
+                    <i class="fas fa-chart-pie card-icon"></i>
+                    <h3>Technical Skills</h3>
+                    <div style="margin-top: 15px;">
+                        <span class="skill-tag">Power BI (Expert)</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Looker Studio</span>
+                        <span class="skill-tag">Advanced Excel (VBA)</span>
+                        <span class="skill-tag">SAP</span>
+                        <span class="skill-tag">IFS ERP</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-brain card-icon"></i>
+                    <h3>Core Competencies</h3>
+                    <div style="margin-top: 15px;">
+                        <span class="skill-tag">Data Governance</span>
+                        <span class="skill-tag">Market Research</span>
+                        <span class="skill-tag">Revenue Optimization</span>
+                        <span class="skill-tag">Budgeting</span>
+                        <span class="skill-tag">Six Sigma (Continuous Imp.)</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-chalkboard-teacher card-icon"></i>
+                    <h3>Training & Projects</h3>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: var(--text-light);">
+                        <strong>Power BI Expert:</strong> Delivered 250+ specialized storytelling sessions.<br><br>
+                        <strong>Professional Trainer:</strong> Trained 1,000+ professionals in Advanced Excel & Automation.<br><br>
+                        <strong>Digital Transformation:</strong> Supported ERP optimization for better user adoption.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section-padding" style="background: var(--white);">
+        <div class="container" style="text-align: center;">
+             <div class="section-header">
+                <h2>Education</h2>
+            </div>
+            <div class="card" style="display: inline-block; text-align: left; min-width: 300px;">
+                <h3 style="color: var(--primary);">Bachelor’s in Management Information Systems</h3>
+                <p style="color: var(--accent); font-weight: 600;">Hashemite University</p>
+                <p style="color: var(--text-light);">2011 – 2014</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container footer-content">
+            <h2>Let's Analyze the Future Together</h2>
+            <div class="contact-methods">
+                <a href="tel:+962798054014" class="contact-btn">
+                    <i class="fas fa-phone"></i> +962 79 805 4014
+                </a>
+                <a href="mailto:Baselghanem21@gmail.com" class="contact-btn">
+                    <i class="fas fa-envelope"></i> Baselghanem21@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/baselghanem/" target="_blank" class="contact-btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="http://wa.me/962788458787" target="_blank" class="contact-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.facebook.com/basel.ghanem.757274" target="_blank" class="contact-btn">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+            </div>
+            
+            <p class="copyright">
+                &copy; <span id="year"></span> Basel Ghanem. All Rights Reserved. Designed with Precision.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Add fade-in class for non-timeline elements
+                    if(!entry.target.classList.contains('timeline-item')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Target Timeline Items
+        document.querySelectorAll('.timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Target Cards for staggered reveal (optional simple fade logic)
+        document.querySelectorAll('.card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
