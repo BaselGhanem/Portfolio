@@ -210,7 +210,7 @@
 
     <div class="stats-bar" id="statsSection">
         <div class="container stats-grid">
-            <div class="stat-item"><span class="stat-number" data-target="8">0</span><p class="stat-label">Years Experience</p></div>
+            <div class="stat-item"><span class="stat-number" data-target="12">0</span><p class="stat-label">Years Experience</p></div>
             <div class="stat-item"><span class="stat-number" data-target="2000">0</span><p class="stat-label">Professionals Trained</p></div>
             <div class="stat-item"><span class="stat-number" data-target="230">0</span><p class="stat-label">Data Sessions</p></div>
             <div class="stat-item"><span class="stat-number" data-target="40">0</span><p class="stat-label">% Efficiency Gain</p></div>
@@ -225,7 +225,7 @@
             </div>
             <div class="card" style="text-align: center; max-width: 900px; margin: 0 auto; border-top: 4px solid var(--accent);">
                 <p style="color: var(--text-body); font-size: 1.1rem; line-height: 1.9;">
-                    I am a <strong>Senior Sales Analyst</strong> with over 8 years of experience in transforming complex datasets into actionable business intelligence. My expertise lies in aligning sales performance with corporate strategy, enhancing operational efficiency, and identifying market trends to boost profitability. I bridge the gap between <strong>Finance, Marketing, and Sales</strong> through robust data governance and cross-functional collaboration.
+                    I am a <strong>Senior Sales Analyst</strong> with over 12 years of experience in transforming complex datasets into actionable business intelligence. My expertise lies in aligning sales performance with corporate strategy, enhancing operational efficiency, and identifying market trends to boost profitability. I bridge the gap between <strong>Finance, Marketing, and Sales</strong> through robust data governance and cross-functional collaboration.
                 </p>
             </div>
         </div>
@@ -367,7 +367,7 @@
                 if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
                 this.x += this.directionX; this.y += this.directionY;
             }
-            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = '#0ea5e9'; ctx.fill(); }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = '#0369a1'; ctx.fill(); }
         }
         function initParticles() { particlesArray = []; for (let i = 0; i < (canvas.height*canvas.width)/15000; i++) particlesArray.push(new Particle()); }
         function animateParticles() {
