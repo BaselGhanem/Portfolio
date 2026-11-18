@@ -12,6 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+
+    <script>
+        // Skip the decorative introduction after its first display in this tab.
+        try {
+            if (sessionStorage.getItem('basel_portfolio_intro_seen') === '1') {
+                document.documentElement.classList.add('portfolio-intro-seen');
+            }
+        } catch (error) {}
+    </script>
+    <noscript><style>#preloader{display:none!important}</style></noscript>
     <style>
         /* --- 1. ARCHITECTURAL ROOT VARIABLES --- */
         :root {
@@ -74,11 +84,111 @@
         .section-padding { padding: 120px 0; position: relative; }
         .gradient-text { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-        /* --- 3. LOADER --- */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out, visibility 0.5s; }
-        .loader-content { text-align: center; color: white; }
-        .data-stream { width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.1); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 15px; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        /* --- 3. EXECUTIVE INTELLIGENCE LOADER --- */
+        #preloader{
+            position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:20px;
+            background:radial-gradient(ellipse at 70% 30%,rgba(9,153,153,.13),transparent 60%),linear-gradient(135deg,#111b2b,#182438 60%,#101927);
+            color:#f4fbfc;isolation:isolate;overflow:hidden;
+            transition:opacity 420ms cubic-bezier(.22,1,.36,1),visibility 420ms;
+        }
+        #preloader::before{
+            content:'';position:absolute;inset:0;opacity:.35;pointer-events:none;
+            background-image:linear-gradient(rgba(125,191,195,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(125,191,195,.1) 1px,transparent 1px);
+            background-size:52px 52px;mask-image:radial-gradient(ellipse,#000 15%,transparent 80%);
+        }
+        #preloader::after{
+            content:'';position:absolute;top:-15%;left:-20%;width:140%;height:1px;
+            background:linear-gradient(90deg,transparent,rgba(109,223,216,.35),transparent);
+            box-shadow:0 0 28px rgba(9,153,153,.2);animation:introScan 1.45s ease-out forwards;pointer-events:none;
+        }
+        #preloader.intro-out{opacity:0;visibility:hidden;pointer-events:none}
+        html.portfolio-intro-seen #preloader{display:none}
+        .intro-panel{
+            width:min(820px,100%);padding:clamp(22px,4vw,38px);border-radius:24px;position:relative;overflow:hidden;
+            background:linear-gradient(145deg,rgba(26,42,60,.96),rgba(17,29,44,.98));
+            border:1px solid rgba(154,210,209,.16);box-shadow:0 35px 95px rgba(0,0,0,.33),inset 0 1px rgba(255,255,255,.04);
+            animation:introArrive 500ms cubic-bezier(.19,1,.22,1) both;
+        }
+        .intro-panel::before{
+            content:'';position:absolute;right:-100px;top:-145px;width:290px;height:290px;border-radius:50%;
+            background:rgba(9,153,153,.13);filter:blur(55px);pointer-events:none;
+        }
+        .intro-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:30px}
+        .intro-brand{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:650;letter-spacing:.14em;color:#f6fbfc}
+        .intro-mark{
+            display:grid;place-items:center;width:33px;height:33px;border-radius:10px;
+            border:1px solid rgba(125,212,206,.38);background:rgba(9,153,153,.08);color:#7ed5cf;font-size:12px;letter-spacing:-.05em
+        }
+        .intro-skip{
+            border:0;background:transparent;color:#a6bbc4;padding:8px 0 8px 10px;cursor:pointer;
+            font:500 11px 'Poppins',sans-serif;transition:color .2s;
+        }
+        .intro-skip:hover,.intro-skip:focus-visible{color:white}
+        .intro-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,4vw,42px);align-items:center}
+        .intro-eyebrow{color:#80d2ca;font-size:10px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;margin:0 0 14px}
+        .intro-heading{font-size:clamp(1.8rem,4vw,2.9rem);font-weight:700;letter-spacing:-.05em;line-height:1.12;margin:0;color:#fff}
+        .intro-heading span{color:#8be1d7}
+        .intro-role{font-size:clamp(.75rem,1.45vw,.89rem);line-height:1.75;font-weight:450;margin:15px 0 0;color:#c0d5de}
+        .intro-typed{margin:20px 0 0;color:#dae8ec;min-height:25px;font-size:12px;line-height:1.6}
+        .intro-type::after{
+            content:'';display:inline-block;width:1px;height:1em;margin-left:3px;
+            background:#7cdbd2;vertical-align:-.13em;animation:introCaret 620ms steps(1,end) infinite;
+        }
+        .intro-visual{
+            min-width:0;border:1px solid rgba(150,206,207,.14);border-radius:16px;
+            padding:17px 16px 14px;background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+        }
+        .intro-visual-header{display:flex;justify-content:space-between;gap:8px;align-items:center;color:#bdccd5;font-size:10px;font-weight:550}
+        .intro-illustrative{font-size:9px;color:#83d8ce;display:inline-flex;align-items:center;gap:6px}
+        .intro-illustrative::before{content:'';width:5px;height:5px;border-radius:50%;background:#83d8ce;box-shadow:0 0 9px #368c85}
+        .intro-svg{width:100%;height:auto;display:block;margin-top:12px;overflow:visible}
+        .intro-grid-line{stroke:rgba(167,215,212,.1);stroke-width:1}
+        .intro-bar{fill:#37696b;transform-box:fill-box;transform-origin:center bottom;animation:introBar 810ms cubic-bezier(.2,.8,.25,1) both}
+        .intro-bar.bar-b{animation-delay:100ms}.intro-bar.bar-c{animation-delay:190ms}.intro-bar.bar-d{animation-delay:280ms}
+        .intro-line{fill:none;stroke:#8be1d7;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:390;stroke-dashoffset:390;animation:introDraw 1150ms ease-out 110ms forwards}
+        .intro-endpoint{fill:#b4f9ef;opacity:0;animation:introDot 200ms ease-in 1100ms forwards}
+        .intro-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:7px}
+        .intro-kpi{border-top:1px solid rgba(153,212,213,.17);padding-top:8px;min-width:0}
+        .intro-kpi small{display:block;font-size:9px;letter-spacing:.025em;color:#96aeb9}
+        .intro-kpi strong{display:block;font-size:11px;font-weight:600;margin-top:3px;color:#f0f8f9}
+        .intro-footer{margin-top:30px}
+        .intro-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#b1c8d0;font-size:10px}
+        .intro-track{height:2px;background:rgba(159,213,212,.18);margin-top:11px;border-radius:5px;overflow:hidden}
+        .intro-progress{height:100%;width:0%;background:linear-gradient(90deg,#168a89,#9be8dc);box-shadow:0 0 15px rgba(123,223,214,.35)}
+        .portfolio-revealed #hero .hero-text{animation:portfolioHeroIntro 700ms cubic-bezier(.19,1,.22,1) both}
+        .portfolio-revealed #hero .hero-image-wrapper{animation:portfolioHeroIntro 840ms cubic-bezier(.19,1,.22,1) 90ms both}
+        @keyframes introScan{to{transform:translateY(115vh)}}
+        @keyframes introArrive{from{opacity:0;transform:translateY(13px) scale(.985)}to{opacity:1;transform:none}}
+        @keyframes introBar{from{transform:scaleY(.04);opacity:.12}to{transform:scaleY(1);opacity:1}}
+        @keyframes introDraw{to{stroke-dashoffset:0}}
+        @keyframes introDot{to{opacity:1}}
+        @keyframes introCaret{50%{opacity:0}}
+        @keyframes portfolioHeroIntro{from{opacity:.15;transform:translateY(16px)}to{opacity:1;transform:none}}
+        @media(max-width:640px){
+            #preloader{padding:14px}
+            .intro-panel{padding:22px 19px;border-radius:18px}
+            .intro-header{margin-bottom:19px}
+            .intro-layout{grid-template-columns:1fr;gap:18px}
+            .intro-heading{font-size:clamp(1.85rem,8vw,2.5rem)}
+            .intro-role{font-size:12px}
+            .intro-typed{margin-top:14px}
+            .intro-visual{padding:12px}
+            .intro-svg{max-height:116px}
+            .intro-footer{margin-top:20px}
+        }
+        @media(max-height:510px){
+            .intro-panel{padding:14px 20px}
+            .intro-header{margin-bottom:10px}
+            .intro-layout{gap:12px}
+            .intro-typed{margin-top:8px}
+            .intro-svg{max-height:80px}
+            .intro-footer{margin-top:12px}
+        }
+        @media(prefers-reduced-motion:reduce){
+            #preloader,.intro-panel,#preloader::after,.intro-bar,.intro-line,.intro-endpoint,.intro-type::after,
+            .portfolio-revealed #hero .hero-text,.portfolio-revealed #hero .hero-image-wrapper{animation:none!important;transition:none!important}
+            .intro-line{stroke-dashoffset:0}.intro-endpoint{opacity:1}
+        }
 
         /* --- 4. NAVIGATION --- */
         nav { position: fixed; top: 0; width: 100%; background: var(--bg-glass); backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); transition: var(--transition-smooth); padding: 5px 0; }
@@ -327,10 +437,51 @@
         @keyframes blobFloat { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: translateY(0); } 33% { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; transform: translateY(-15px); } 66% { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; transform: translateY(5px); } }
     </style>
 </head>
-<body class="dark-mode"> <div id="preloader">
-        <div class="loader-content">
-            <div class="data-stream"></div>
-            <h3>Nice to have you here...</h3>
+<body class="dark-mode">
+    <div id="preloader" aria-hidden="true">
+        <div class="intro-panel">
+            <div class="intro-header">
+                <div class="intro-brand"><span class="intro-mark">BG</span> BASEL GHANEM <span style="color:#537782">/</span> PORTFOLIO</div>
+                <button type="button" class="intro-skip" id="intro-skip" tabindex="-1">Skip intro <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="intro-layout">
+                <div class="intro-message">
+                    <p class="intro-eyebrow">Welcome to my world of data</p>
+                    <h2 class="intro-heading">Insight meets<br><span>execution.</span></h2>
+                    <p class="intro-role">Senior Sales Analyst<br>Commercial Intelligence &amp; Business Solutions</p>
+                    <p class="intro-typed"><span class="intro-type" id="intro-type">Welcome. Every number tells a story.</span></p>
+                </div>
+                <div class="intro-visual">
+                    <div class="intro-visual-header"><span>Performance perspective</span><span class="intro-illustrative">Illustrative</span></div>
+                    <svg class="intro-svg" viewBox="0 0 330 144" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="intro-area" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#43bdb2" stop-opacity=".16"/>
+                                <stop offset="100%" stop-color="#43bdb2" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <line class="intro-grid-line" x1="0" x2="330" y1="32" y2="32"/>
+                        <line class="intro-grid-line" x1="0" x2="330" y1="72" y2="72"/>
+                        <line class="intro-grid-line" x1="0" x2="330" y1="112" y2="112"/>
+                        <rect class="intro-bar bar-a" x="35" y="81" width="22" height="49" rx="4"/>
+                        <rect class="intro-bar bar-b" x="100" y="65" width="22" height="65" rx="4"/>
+                        <rect class="intro-bar bar-c" x="165" y="73" width="22" height="57" rx="4"/>
+                        <rect class="intro-bar bar-d" x="230" y="38" width="22" height="92" rx="4"/>
+                        <path d="M14 117 C55 97 66 111 98 87 S160 82 184 63 S245 59 272 37 S300 36 319 17 L319 133 L14 133 Z" fill="url(#intro-area)"/>
+                        <path class="intro-line" d="M14 117 C55 97 66 111 98 87 S160 82 184 63 S245 59 272 37 S300 36 319 17"/>
+                        <circle class="intro-endpoint" cx="319" cy="17" r="4"/>
+                    </svg>
+                    <div class="intro-kpis">
+                        <div class="intro-kpi"><small>Sales</small><strong>Analyze</strong></div>
+                        <div class="intro-kpi"><small>KPI</small><strong>Optimize</strong></div>
+                        <div class="intro-kpi"><small>Systems</small><strong>Build</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="intro-footer">
+                <div class="intro-meta"><span id="intro-status">Preparing your experience</span><span id="intro-percent">0%</span></div>
+                <div class="intro-track"><div class="intro-progress" id="intro-progress"></div></div>
+            </div>
         </div>
     </div>
 
@@ -534,11 +685,78 @@
     <script>
         // --- JS LOGIC WITH THEME TOGGLE ---
         window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            setTimeout(() => { preloader.style.visibility = 'hidden'; }, 500);
             document.getElementById('year').textContent = new Date().getFullYear();
         });
+
+        // Fast executive introduction: fully silent, skip-friendly and once per tab session.
+        (() => {
+            const overlay = document.getElementById('preloader');
+            if (!overlay) return;
+
+            const saveSeen = () => {
+                try { sessionStorage.setItem('basel_portfolio_intro_seen', '1'); }
+                catch (error) {}
+            };
+            const reveal = () => {
+                overlay.classList.add('intro-out');
+                document.body.classList.add('portfolio-revealed');
+                saveSeen();
+                window.setTimeout(() => { overlay.remove(); }, 450);
+            };
+            if (document.documentElement.classList.contains('portfolio-intro-seen')) {
+                overlay.remove();
+                return;
+            }
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                reveal();
+                return;
+            }
+
+            const duration = 1550;
+            const started = performance.now();
+            const message = 'Welcome. Every number tells a story.';
+            const typed = document.getElementById('intro-type');
+            const progress = document.getElementById('intro-progress');
+            const percent = document.getElementById('intro-percent');
+            const status = document.getElementById('intro-status');
+            let finished = false;
+            let cursor = 0;
+            typed.textContent = '';
+
+            const finish = () => {
+                if (finished) return;
+                finished = true;
+                window.clearInterval(typeTimer);
+                window.clearInterval(progressTimer);
+                typed.textContent = message;
+                progress.style.width = '100%';
+                percent.textContent = '100%';
+                status.textContent = 'Enjoy exploring';
+                reveal();
+            };
+
+            const typeTimer = window.setInterval(() => {
+                if (cursor >= message.length) return window.clearInterval(typeTimer);
+                typed.textContent = message.slice(0, ++cursor);
+            }, 23);
+
+            const progressTimer = window.setInterval(() => {
+                const ratio = Math.min(1, (performance.now() - started) / duration);
+                const value = Math.round(ratio * 100);
+                progress.style.width = String(value) + '%';
+                percent.textContent = String(value) + '%';
+                status.textContent = ratio > .83
+                    ? 'Almost ready'
+                    : ratio > .42
+                    ? 'Bringing insights together'
+                    : 'Preparing your experience';
+                if (ratio >= 1) finish();
+            }, 45);
+
+            document.getElementById('intro-skip').addEventListener('click', finish);
+            // A failsafe prevents visual flair from blocking the site.
+            window.setTimeout(finish, duration + 120);
+        })();
 
         // Responsive navigation
         const menuBtn=document.getElementById('menu-btn');
