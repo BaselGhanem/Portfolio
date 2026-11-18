@@ -197,11 +197,50 @@
             box-shadow: var(--shadow-lg);
             border-color: rgba(9, 153, 153, 0.3);
         }
-        .course-img {
-            width: 100%;
+        /* Keep the original Excel and Power BI artwork fully visible, without cropping. */
+        .course-media {
+            --course-glow: rgba(9, 153, 153, 0.12);
+            height: 230px;
+            padding: 24px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(9, 153, 153, 0.06), transparent 65%), var(--bg-light);
+            border-bottom: 1px solid rgba(9, 153, 153, 0.20);
+        }
+        .course-media::before {
+            content: '';
+            position: absolute;
+            width: 220px;
             height: 220px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--accent);
+            border-radius: 50%;
+            background: var(--course-glow);
+            filter: blur(48px);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .course-media--excel { --course-glow: rgba(36, 145, 89, 0.22); }
+        .course-media--powerbi { --course-glow: rgba(245, 178, 18, 0.20); }
+        .course-img {
+            display: block;
+            width: 100%;
+            max-width: 275px;
+            height: 185px;
+            object-fit: contain;
+            object-position: center;
+            border: 0;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.12));
+            transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+        .course-card:hover .course-img {
+            transform: scale(1.04);
+        }
+        @media (max-width: 480px) {
+            .course-media { height: 205px; padding: 20px; }
+            .course-img { height: 160px; max-width: 240px; }
         }
         .course-content {
             padding: 30px;
@@ -419,7 +458,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,280px), 1fr)); gap: 40px;">
                 
                 <div class="course-card">
-                    <img src="./Excel.png" alt="Advanced Excel Course" class="course-img">
+                    <div class="course-media course-media--excel"><img src="./Excel.png" alt="Microsoft Excel logo" class="course-img" loading="lazy" decoding="async"></div>
                     <div class="course-content">
                         <h3>Advanced Excel Mastery</h3>
                         <span style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px; margin-bottom: 10px; display: block;"><i class="fas fa-clock"></i> 20 Hours</span>
@@ -430,7 +469,7 @@
                 </div>
 
                 <div class="course-card">
-                    <img src="./Power-bl.png" alt="Power BI Expert Course" class="course-img">
+                    <div class="course-media course-media--powerbi"><img src="./Power-bl.png" alt="Microsoft Power BI logo" class="course-img" loading="lazy" decoding="async"></div>
                     <div class="course-content">
                         <h3>Power BI Expert Training</h3>
                         <span style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px; margin-bottom: 10px; display: block;"><i class="fas fa-clock"></i> 20 Hours</span>
