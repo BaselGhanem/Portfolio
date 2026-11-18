@@ -149,5 +149,12 @@ li::marker{color:var(--teal)}
 <div class="footer">BASEL GHANEM | CURRICULUM VITAE</div>
 </article>
 </main>
+<script>
+window.addEventListener('load', () => {
+  if (new URLSearchParams(window.location.search).get('download') === '1') {
+    window.print();
+  }
+});
+</script>
 </body>
 </html>
